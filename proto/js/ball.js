@@ -10,27 +10,26 @@ ball.prototype = {
       radius   : 30,
       velocity : new vector(10, 10),
       mass     : 1,
-      start    : new vector(100, 100)
+      density  : 1,
+      start    : new vector(100, 100),
+      canvas   : null
    },
    _init : function(){
       var opt        = this.options;
       this.radius    = opt.radius;
       this.velocity  = opt.velocity;
-      this.mass      = opt.mass;
+      this.mass      = opt.density * this.area();
       this.start = this.center = opt.start;
-      
+   },
+   area : function(){
+      return Math.PI * this.radius * this.radius;
+   },
+   move : function(deltaT) {
+      this.center = this.velocity.multiplyNumber(deltaT).summ(this.center);
+   },
+   setCenter : function(center){
+      this.center = center;
    }
-};
-
-var ballCollision = function ballCollision(ballOne, ballTwo, timeOfCollision){
-   this.ballOne         = ballOne;
-   this.ballTwo         = ballTwo;
-   this.timeOfCollision = timeOfCollision;
-};
-window.ballCollision = ballCollision;
-ballCollision.prototype = function(){
-   
-   
 };
 
 })(jQuery);

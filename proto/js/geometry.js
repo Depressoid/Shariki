@@ -33,20 +33,24 @@ vector.prototype = {
          ? this.y > 0 ? Math.PI / 2 : -Math.PI / 2
          : Math.atan(this.y / this.x);
       
-      var abs = this.abs();
-         
+      angle += this.y < 0 ? Math.PI : 0; 
       angle += rad;
       
-      return new vector(abs * Math.sin(angle), abs * Math.cos(angle));
+      var abs = this.abs();
+      
+      return new vector(abs * Math.cos(angle), abs * Math.sin(angle));
    },
    multiply : function(v) {
       return vector.scalarMultiply(this, v);
+   },
+   multiplyNumber : function(number){
+      return new vector(this.x * number, this.y * number);
    },
    summ : function(v) {
       return vector.summ(this, v);
    },
    negate : function(){
-      return new vector(-this.x, -this.y);
+      return this.multiplyNumber(-1);
    },
    reflectByHorizontal : function(){
       return new vector(this.x, -this.y);

@@ -1,17 +1,43 @@
 $().ready(function(){
 
-var ballOne = new ball({
-   radius   : 100,
-   velocity : new vector(0, 1),
-   start    : new vector(20, 20)
+var canvas = Raphael(0,0, $(window).width(), $(window).height());
+
+
+ballManager.options.step = 0.02;
+ballManager.init({
+   ballFactory : ballFactory, 
+   ballOptions : {
+      canvas : canvas
+   }
 });
 
-var ballTwo = new ball({
-   radius   : 10,
-   velocity : new vector(-10, 0),
-   start    : new vector(300, 50)
+
+ballManager.addRandomBall();
+ballManager.addRandomBall();
+ballManager.addRandomBall();
+ballManager.addRandomBall();
+ballManager.addRandomBall();
+ballManager.addRandomBall();
+
+
+
+ballManager.recalc();
+
+var start = false;
+var timer;
+var moveBalls = function(){
+   ballManager.nextPosition();
+}
+
+$(document.body).click(function(){
+
+   start = !start;
+   
+   if (start)
+      timer = setInterval(moveBalls, 20);
+   else
+      clearInterval(timer);
 });
 
-alert(ballManager.timeOfCollision(ballOne, ballTwo));
 
 });
