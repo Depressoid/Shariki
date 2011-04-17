@@ -16,7 +16,6 @@ ballCollision.prototype = $.extend({}, baseCollision, {
    dispose : function(){
       this.ballOne = undefined;
       this.ballTwo = undefined;
-      delete this;
    },
    after : function(){
       var m1 = this.ballOne.mass;
@@ -58,7 +57,6 @@ window.wallCollision = wallCollision;
 wallCollision.prototype = $.extend({}, baseCollision, {
    dispose : function(){
       this.ball = undefined;
-      delete this;
    },
    after : function(){
       this.ball.velocity   = this.ball.velocity[this.isHorizontal ? 'reflectByHorizontal' : 'reflectByVertical']();

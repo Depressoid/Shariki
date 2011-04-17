@@ -1,7 +1,7 @@
 var ballManager = {
    options : {
-      maxV       : 300,
-      minV       : 10,
+      maxV       : 350,
+      minV       : 30,
       minRadius  : 20,
       maxRadius  : 90,
       step       : 0.05

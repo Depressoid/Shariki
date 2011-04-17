@@ -13,8 +13,8 @@ raphaelBall.prototype = $.extend(true, {}, ball.prototype, {
       ball.prototype.move.apply(self, arguments);
       
       self.renderBall.attr({
-         cx    : self.center.x + 'px',
-         cy    : self.center.y + 'px'
+         cx    : self.center.x,
+         cy    : self.center.y
       });
    },
    render : function(){

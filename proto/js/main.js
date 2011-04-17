@@ -18,6 +18,9 @@ ballManager.addRandomBall();
 ballManager.addRandomBall();
 ballManager.addRandomBall();
 ballManager.addRandomBall();
+ballManager.addRandomBall();
+ballManager.addRandomBall();
+ballManager.addRandomBall();
 
 
 
