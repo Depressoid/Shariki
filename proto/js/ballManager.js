@@ -15,17 +15,39 @@ var ballManager = {
       this.ballOptions = options.ballOptions;
    },
    addRandomBall : function(){
+      var self = this;
+      var screenHeight = $(window).height();
+      var screenWidth  = $(window).width();
+      var opt = this.options;
+   
       var randomVelocity = function(){
          return utils.randFloat(-opt.maxV, opt.maxV);
       };
-      var opt = this.options;
-      var screenHeight = $(window).height();
-      var screenWidth  = $(window).width();
+      var randomStart = function(R){
+         var start, ball, i; 
+         var intersect     = true;
+         while (intersect)
+         {
+            start          = new vector(utils.randInt(R, screenWidth - R), utils.randInt(R, screenHeight - R));
+            notIntersect   = true;
+            for (i = self._balls.length - 1; i >= 0; --i)
+            {
+               ball = self._balls[i];
+               if (ball.start.summ(start.negate()).abs() < ball.radius + R)
+               {
+                  notIntersect = false;
+                  break;
+               }
+            }
+            intersect = !notIntersect;
+         }
+         return start;
+      };
       
       var 
-         V     = new vector(randomVelocity(), randomVelocity()),
-         R     = utils.randInt(opt.minRadius, opt.maxRadius);
-         Start = new vector(utils.randInt(R, screenWidth - R), utils.randInt(R, screenHeight - R));
+          V     = new vector(randomVelocity(), randomVelocity()),
+          R     = utils.randInt(opt.minRadius, opt.maxRadius);
+      var Start = randomStart(R);
       
       this._balls.push(
          this.ballFactory.create($.extend({

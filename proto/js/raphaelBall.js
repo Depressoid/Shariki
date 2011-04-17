@@ -2,7 +2,12 @@ window.raphaelBall = function raphaelBall(options) {
    this.options = $.extend({}, this.options, options || {});
    this._init();
 };
+
 raphaelBall.prototype = $.extend(true, {}, ball.prototype, {
+   options : {
+      minColor : 50,
+      maxColor : 255
+   },
    _init : function(){
       ball.prototype._init.apply(this, arguments);
       this.canvas = this.options.canvas;
@@ -17,6 +22,24 @@ raphaelBall.prototype = $.extend(true, {}, ball.prototype, {
          cy    : self.center.y
       });
    },
+   _randGradient : function(){
+      var max = this.options.maxColor;
+      var min = this.options.minColor;
+      var numberPartsOfColor = 3;
+      
+      var minColor = '';
+      var maxColor = '';
+      
+      for (var i = 0; i < numberPartsOfColor; ++i)
+      {
+         var color1 = utils.randInt(min, max);
+         var color2 = utils.randInt(min, max);
+         
+         minColor += Math.min(color1, color2).toString(16);
+         maxColor += Math.max(color1, color2).toString(16);
+      }
+      return '#' + maxColor + '-#' + minColor;
+   },
    render : function(){
       var self = this;
       
@@ -24,9 +47,9 @@ raphaelBall.prototype = $.extend(true, {}, ball.prototype, {
       {
          self.renderBall = this.canvas.circle(self.center.x, self.center.y, self.radius);
          self.renderBall.attr({
-            fill           : 'r(0.5, 0.5)#ff0-#aa0',
+            fill           : 'r(0.5, 0.5)' + self._randGradient(),
             'fill-opacity' : 0.7,
-            stroke         : "#aa0"
+            'stroke-width' : 0
          });
       }
    }
