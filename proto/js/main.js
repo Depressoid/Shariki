@@ -20,7 +20,7 @@ text.attr({
    x              : $(window).width() / 2,
    y              : $(window).height() / 2,
    font           : '52px "Times New Roman"',
-   fill           : '#fff',
+   fill           : '90-#555-#fff',
    'text-anchor'  : 'center'
 });
 text.toFront();
