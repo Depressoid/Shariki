@@ -48,7 +48,7 @@ raphaelBall.prototype = $.extend(true, {}, ball.prototype, {
          self.renderBall = this.canvas.circle(self.center.x, self.center.y, self.radius);
          self.renderBall.attr({
             fill           : 'r(0.5, 0.5)' + self._randGradient(),
-            'fill-opacity' : 0.7,
+            'fill-opacity' : 0.8,
             'stroke-width' : 0
          });
       }

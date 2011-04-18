@@ -2,7 +2,7 @@ $().ready(function(){
 
 var canvas = Raphael(0,0, $(window).width(), $(window).height());
 
-var quantity = 10;
+var quantity = utils.randInt(1, 20);
 
 ballManager.options.step = 0.02;
 ballManager.init({
