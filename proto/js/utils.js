@@ -14,3 +14,4 @@ var utils  = {
 
    }
 };
+window.utils = utils;

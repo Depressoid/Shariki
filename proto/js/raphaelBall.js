@@ -1,7 +1,9 @@
-window.raphaelBall = function raphaelBall(options) {
+var raphaelBall = function raphaelBall(options) {
    this.options = $.extend({}, this.options, options || {});
    this._init();
 };
+
+window.raphaelBall = raphaelBall;
 
 raphaelBall.prototype = $.extend(true, {}, ball.prototype, {
    options : {

@@ -196,3 +196,4 @@ var ballManager = {
       this._collision = collision;
    }
 };
+window.ballManager = ballManager;
