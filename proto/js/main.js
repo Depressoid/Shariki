@@ -1,7 +1,6 @@
 $().ready(function(){
 
 var canvas = Raphael(0,0, $(window).width(), $(window).height());
-
 var quantity = utils.randInt(1, 20);
 
 ballManager.options.step = 0.02;
@@ -14,6 +13,17 @@ ballManager.init({
 
 for (var i = 0; i < quantity; ++i)
    ballManager.addRandomBall();
+
+
+var text = canvas.text(100, 100, 'Ебать, колотить.');
+text.attr({
+   x              : $(window).width() / 2,
+   y              : $(window).height() / 2,
+   font           : '52px "Times New Roman"',
+   fill           : '#fff',
+   'text-anchor'  : 'center'
+});
+text.toFront();
    
 ballManager.recalc();
 
