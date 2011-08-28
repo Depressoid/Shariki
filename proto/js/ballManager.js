@@ -161,22 +161,15 @@ var ballManager = {
       for (var i = 0; i < length; ++i)
       {
          ballOne = this._balls[i];
-         t = this.timeOfCollisionVerticalWall(ballOne);
+         tVertical    = this.timeOfCollisionVerticalWall(ballOne);
+         tHorizontal  = this.timeOfCollisionHorizontalWall(ballOne);
+         t            = Math.min(tVertical, tHorizontal);
          if (t < minTime)
          {
             minTime = t;
             collision && collision.dispose();
-            collision = new wallCollision(ballOne, false, t);
+            collision = new wallCollision(ballOne, tHorizontal < tVertical, t);
          }
-         
-         t = this.timeOfCollisionHorizontalWall(ballOne);
-         if (t < minTime)
-         {
-            minTime = t;
-            collision && collision.dispose();
-            collision = new wallCollision(ballOne, true, t);
-         }
-            
          
          for (var j = i + 1; j < length; ++j)
          {

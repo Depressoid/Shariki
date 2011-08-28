@@ -14,6 +14,10 @@ raphaelBall.prototype = $.extend(true, {}, ball.prototype, {
       ball.prototype._init.apply(this, arguments);
       this.canvas = this.options.canvas;
       this.render();
+      this._initEvents();
+   },
+   _initEvents : function(){
+      
    },
    move : function(deltaT){
       var self = this;
